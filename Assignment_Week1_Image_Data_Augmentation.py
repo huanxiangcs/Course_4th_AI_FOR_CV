@@ -8,6 +8,7 @@ import cv2
 import random
 import numpy as np
 from matplotlib import pyplot as plt
+from random import choice
 
 #Crop Image
 def img_crop(img, x1, y1, x2, y2): #input: a image, the coordinates of two points
@@ -84,3 +85,14 @@ def img_warp(img, pts1, pts2):
     M_warp = cv2.getPerspectiveTransform(pts1, pts2)       #generate the matrix
     img_warp = cv2.warpPerspective(img, M_warp, (width, height))
     return M_warp, img_warp
+
+if __name__ == "__main__":
+    img_address = input("请输入图片路径，(地址栏中用/代替'\\')：")
+    img_transform = input("选择图片保存路径：")
+    n = input(“所需增强图像的数量:")
+    img = cv2.imread(img_address)
+    transforms = [random_crop,color_shift,rotation_img,random_warp]
+    for i in range(int(n)):
+        aug_img = random.choice(transfomrs)(img)
+        cv2.imwrite("img_data/{}.jpg".format(i),aug_img)
+    
