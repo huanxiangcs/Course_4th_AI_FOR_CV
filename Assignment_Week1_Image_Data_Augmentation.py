@@ -89,7 +89,7 @@ def img_warp(img, pts1, pts2):
 if __name__ == "__main__":
     img_address = input("请输入图片路径，(地址栏中用/代替'\\')：")
     img_transform = input("选择图片保存路径：")
-    n = input(“所需增强图像的数量:")
+    n = input("所需增强图像的数量:")
     img = cv2.imread(img_address)
     transforms = [random_crop,color_shift,rotation_img,random_warp]
     for i in range(int(n)):
